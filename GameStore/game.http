@@ -1,0 +1,27 @@
+GET http://localhost:5210/games
+
+###
+GET http://localhost:5210/games/1
+
+###
+POST http://localhost:5210/games
+Content-Type: application/json
+
+{
+    "title": "New World",
+    "genre": "MMORPG",
+    "price": 49.99,
+    "releaseDate": "2024-07-15"
+}
+
+###
+PUT http://localhost:5210/games/1
+
+Content-Type: application/json
+
+{
+    "title": "The Witcher 3",
+    "genre": "RPG",
+    "price": 30.99,
+    "releaseDate": "2015-05-19"
+}
