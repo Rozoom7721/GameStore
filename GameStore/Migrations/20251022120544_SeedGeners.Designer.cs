@@ -3,6 +3,7 @@ using System;
 using GameStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameStore.Migrations
 {
     [DbContext(typeof(GameStoreContext))]
-    partial class GameStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20251022120544_SeedGeners")]
+    partial class SeedGeners
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
@@ -56,48 +59,6 @@ namespace GameStore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Geners");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Action"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Adventure"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "RPG"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Strategy"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Simulation"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Sports"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Puzzle"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Sandbox"
-                        });
                 });
 
             modelBuilder.Entity("GameStore.Entities.Game", b =>

@@ -1,5 +1,7 @@
 using System;
+using GameStore.Data;
 using GameStore.DTOS;
+using GameStore.Entities;
 
 namespace GameStore.EndPoints;
 
@@ -31,24 +33,35 @@ public static class GamesEndpoints
 
         //POST /games
 
-        group.MapPost("/", (CreateGameDto newGame) =>
+        group.MapPost("/", (CreateGameDto newGame, GameStoreContext dbContext) =>
         {
-            GameDto gameToAdd = new(
-                games.Count + 1,
-                newGame.Title,
-                newGame.Genre,
-                newGame.Price,
-                newGame.ReleaseDate
-                );
-            games.Add(gameToAdd);
-            return Results.CreatedAtRoute(GetGameEndpointName, new { id = gameToAdd.Id }, gameToAdd);
+            Game gameToAdd = new()
+            {
+                Title = newGame.Title,
+                Gener = dbContext.Geners.Find(newGame.GenreId),
+                GenerId = newGame.GenreId,
+                Price = newGame.Price,
+                ReleaseDate = newGame.ReleaseDate
+            };
+            dbContext.Games.Add(gameToAdd);
+            dbContext.SaveChanges();
+
+            GameDto gameDto = new(
+                gameToAdd.Id,
+                gameToAdd.Title,
+                gameToAdd.Gener!.Name,
+                gameToAdd.Price,
+                gameToAdd.ReleaseDate
+            );
+
+            return Results.CreatedAtRoute(GetGameEndpointName, new { id = gameToAdd.Id }, gameDto);
         });
 
         //PUT /games/{id}
         group.MapPut("/{id}", (int id, UpdateGameDto updatedGame) =>
         {
             var gameIndex = games.FindIndex(game => game.Id == id);
-            
+
             if (gameIndex == -1)
             {
                 return Results.NotFound();
