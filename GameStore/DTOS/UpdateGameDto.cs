@@ -4,10 +4,8 @@ namespace GameStore.DTOS;
 
 public record class UpdateGameDto(
     [Required][StringLength(50)]string Title,
-    [Required][StringLength(20)]string Genre,
+    int GenreId,
     [Required]decimal Price,
     [Required]DateOnly ReleaseDate
-)
-{
+);
 
-}
