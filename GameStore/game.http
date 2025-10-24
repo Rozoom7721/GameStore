@@ -1,27 +1,32 @@
 GET http://localhost:5210/games
 
 ###
-GET http://localhost:5210/games/1
+GET http://localhost:5210/games/2
+
+###
+GET http://localhost:5210/games/9999
 
 ###
 POST http://localhost:5210/games
 Content-Type: application/json
 
 {
-    "title": "New World",
-    "genre": "MMORPG",
-    "price": 49.99,
-    "releaseDate": "2024-07-15"
+    "title": "Sekiro: Shadows Die Twice",
+    "genreId": 2,
+    "price": 59.99,
+    "releaseDate": "2019-03-22"
 }
 
 ###
-PUT http://localhost:5210/games/1
-
+PUT http://localhost:5210/games/2
 Content-Type: application/json
 
 {
     "title": "The Witcher 3",
-    "genre": "RPG",
+    "genreId": 3,
     "price": 30.99,
     "releaseDate": "2015-05-19"
 }
+
+###
+DELETE  http://localhost:5210/games/4
