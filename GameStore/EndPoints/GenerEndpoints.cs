@@ -7,7 +7,6 @@ namespace GameStore.EndPoints;
 
 public static class GenerEndpoints
 {
-    const string GetGenerEndpointName = "GetGener";
 
     public static RouteGroupBuilder MapGenerEndpoints (this WebApplication app)
     {
